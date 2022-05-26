@@ -34,3 +34,5 @@
       `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
+
+(push (cons "\\*shell\\*" display-buffer--same-window-action) display-buffer-alist)
