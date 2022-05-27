@@ -1,35 +1,54 @@
-;;Misc
+;;Misc                                                                                                                                                                                                                                                                                                
+
+;; Added by Package.el.  This must come before configurations of                                                                                                                                                                                                                                      
+;; installed packages.  Don't delete this line.  If you don't want it,                                                                                                                                                                                                                                
+;; just comment it out by adding a semicolon to the start of the line.                                                                                                                                                                                                                                
+;; You may delete these explanatory comments.                                                                                                                                                                                                                                                         
+(package-initialize)
+
+;;C Mode                                                                                                                                                                                                                                                                                              
+(setq c-set-style "k&r")
+
+;;C++ Mode                                                                                                                                                                                                                                                                                            
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 (require 'google-c-style)
 
+;;Go Mode                                                                                                                                                                                                                                                                                             
 (add-to-list 'load-path "~/.emacs.d/lisp/go-mode.el/")
 (autoload 'go-mode "go-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
 
-;;Column Marker
+;;Js Mode                                                                                                                                                                                                                                                                                             
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js-mode))
+
+;;Column Marker                                                                                                                                                                                                                                                                                       
 (require 'column-marker)
 (add-hook 'c++-mode-hook (lambda () (interactive) (column-marker-1 80)))
+(add-hook 'js-mode-hook (lambda () (interactive) (column-marker-1 80)))
 
-;;No Tab
+;;Indentation                                                                                                                                                                                                                                                                                         
 (setq-default indent-tabs-mode nil)
+(setq-default tab-width 2)
+(setq-default c-basic-offset 2)
+(setq-default js-indent-level 2)
+;;Suppressing C++ Namespace Indentation                                                                                                                                                                                                                                                               
+(c-set-offset 'innamespace 0)
 
-;;Eshell
+;;Clean Whitespace                                                                                                                                                                                                                                                                                    
+(add-hook 'before-save-hook 'whitespace-cleanup)
+
+;;Eshell                                                                                                                                                                                                                                                                                              
 (add-hook
  'eshell-mode-hook
  (lambda ()
    (setq pcomplete-cycle-completions nil)))
 (setq eshell-cmpl-cycle-completions nil)
 
-;;Navigating Windows
+;;Navigating Windows                                                                                                                                                                                                                                                                                  
 (windmove-default-keybindings)
 
-;;Suppressing C++ Namespace Indentation
-(c-set-offset 'innamespace 0)
-
-(add-hook 'before-save-hook 'whitespace-cleanup)
-
-;; store all backup and autosave files in the tmp dir
+;; store all backup and autosave files in the tmp dir                                                                                                                                                                                                                                                 
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
