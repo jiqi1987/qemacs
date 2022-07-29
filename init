@@ -1,65 +1,83 @@
-;;Misc                                                                                                                                                                                                                                                        
+;;Misc
 
-;; Added by Package.el.  This must come before configurations of                                                                                                                                                                                              
-;; installed packages.  Don't delete this line.  If you don't want it,                                                                                                                                                                                        
-;; just comment it out by adding a semicolon to the start of the line.                                                                                                                                                                                        
-;; You may delete these explanatory comments.                                                                                                                                                                                                                 
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
 (package-initialize)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'package-archives '("elpa" . "https://elpa.gnu.org/packages/"))
 (unless package-archive-contents (package-refresh-contents))
 
-;;C Mode                                                                                                                                                                                                                                                      
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+
+;;C Mode
 (setq c-set-style "k&r")
 
-;;C++ Mode                                                                                                                                                                                                                                                    
-(add-to-list 'load-path "~/.emacs.d/lisp/")
+;;C++ Mode
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 (require 'google-c-style)
 
-;;Go Mode                                                                                                                                                                                                                                                     
+;;CMake Mode
+(setq load-path (cons (expand-file-name "~/.emacs.d/list/") load-path))
+(require 'cmake-mode)
+
+;;Go Mode
 (add-to-list 'load-path "~/.emacs.d/lisp/go-mode.el/")
 (autoload 'go-mode "go-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
 
-;;Js Mode                                                                                                                                                                                                                                                     
+;;Js Mode
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js-mode))
 
-;;Ts Mode                                                                                                                                                                                                                                                     
-(add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
+;; ;;Ts Mode
+;; (require 'typescript-mode)
+;; (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
 
-;;Column Marker                                                                                                                                                                                                                                               
+;;Column Marker
 (require 'column-marker)
 (add-hook 'c++-mode-hook (lambda () (interactive) (column-marker-1 80)))
 (add-hook 'js-mode-hook (lambda () (interactive) (column-marker-1 80)))
 (add-hook 'typescript-mode-hook (lambda () (interactive) (column-marker-1 80)))
 
-;;Indentation                                                                                                                                                                                                                                                 
+;;Indentation
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
 (setq-default c-basic-offset 2)
 (setq-default js-indent-level 2)
 (setq-default typescript-indent-level 2)
-;;Suppressing C++ Namespace Indentation                                                                                                                                                                                                                       
+;;Suppressing C++ Namespace Indentation
 (c-set-offset 'innamespace 0)
 
-;;Clean Whitespace                                                                                                                                                                                                                                            
+;;Clean Whitespace
 (add-hook 'before-save-hook 'whitespace-cleanup)
 
-;;Eshell                                                                                                                                                                                                                                                      
+;;Eshell
 (add-hook
  'eshell-mode-hook
  (lambda ()
    (setq pcomplete-cycle-completions nil)))
 (setq eshell-cmpl-cycle-completions nil)
 
-;;Navigating Windows                                                                                                                                                                                                                                          
+;;Navigating Windows
 (windmove-default-keybindings)
 
-;; store all backup and autosave files in the tmp dir                                                                                                                                                                                                         
+;; store all backup and autosave files in the tmp dir
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 
 (push (cons "\\*shell\\*" display-buffer--same-window-action) display-buffer-alist)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages (quote (typescript-mode))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
