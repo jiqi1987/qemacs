@@ -13,7 +13,6 @@
 
 ;;C Mode
 (setq c-set-style "k&r")
-(add-hook 'c-mode-common-hook (lambda() (c-set-offset 'inextern-lang 0)))
 
 ;;C++ Mode
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
@@ -47,8 +46,10 @@
 (setq-default c-basic-offset 2)
 (setq-default js-indent-level 2)
 (setq-default typescript-indent-level 2)
-;;Suppressing C++ Namespace Indentation
+;;C++ Indentation
 (c-set-offset 'innamespace 0)
+(c-set-offset 'access-label -1)
+(c-set-offset 'inextern-lang 0)
 
 ;;Clean Whitespace
 (add-hook 'before-save-hook 'whitespace-cleanup)
