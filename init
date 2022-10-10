@@ -13,6 +13,7 @@
 
 ;;C Mode
 (setq c-set-style "k&r")
+(add-hook 'c-mode-common-hook (lambda() (c-set-offset 'inextern-lang 0)))
 
 ;;C++ Mode
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
