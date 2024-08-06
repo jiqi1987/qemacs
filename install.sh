@@ -5,6 +5,7 @@ sudo apt -y install emacs-nox
 sudo apt -y install net-tools binutils g++ cmake
 sudo apt -y install bash-completion
 sudo apt -y install git
+sudo apt -y install quake
 
 source ./git-completion.bash
 
