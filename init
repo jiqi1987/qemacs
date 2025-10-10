@@ -20,6 +20,7 @@
 
 ;;C Mode
 (setq c-set-style "k&r")
+(c-set-offset 'case-label '+)
 
 ;;C++ Mode
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
