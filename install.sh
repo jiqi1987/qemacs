@@ -9,9 +9,9 @@ sudo apt -y install quake
 
 source ./git-completion.bash
 
-cd file/lisp/
-git clone https://github.com/dominikh/go-mode.el.git
-cd ../..
+#cd file/lisp/
+#git clone https://github.com/dominikh/go-mode.el.git
+#cd ../..
 
 rm -rf ~/.emacs.d
 cp -r file ~/.emacs.d
